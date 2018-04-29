@@ -1,7 +1,5 @@
 # Conceptual ideas for Ríki community
 
-## List of contents
-
 ## Goals of the community website
 
 - example website for this framework
@@ -21,7 +19,7 @@ framework.
 - Guide: A book that describes how to start with a new project using this framework
 - Documentation: The documentation of the framework in the latest stable version (somehow synced)
 - Exchange: A forum similar to the concept of stack exchange
-- Contribute: A guide how to contribute to this framework
+- Contribute: A guide how to contribute to this framework (static page)
 
 ## Homepage and UX concept
 
@@ -44,7 +42,28 @@ a list of teasers to the latest blog posts.
 
 ## Blog
 
-Blog posts can be written by contributors and users with high reputation (revised by a contributor). A blog post can be
- up and down voted what brings reputation for the author.
+- Blog posts can be written by contributors and users with high reputation (revised by a contributor)
+- A Blog post can be up and down voted what brings reputation for the author
+- A Blog post can get comments that also can be voted up and down
+- Blog posts and comments are written in MarkDown and follow the same rules as github MarkDown
+- The teaser is generated automatically but can be defined by the author as well
 
-A blog post can get comments that also can be voted up and down.
+## Guide
+
+- The guide is not only about using the framework
+- The guide is structured as follows
+  - to be continued...
+- Each guide page can have comments with up and down voting
+- The guide is written in github MarkDown as well
+- The guide can be printed as a complete book
+- The guide can be downloaded as epub
+
+## Documentation
+
+- The documentation of the latest stable version will be synchronized
+- No comments here
+
+## Exchange
+
+- Like stack exchange up and down voting questions and answers but with github MarkDown
+- Live search while writing questions to avoid duplicates 
