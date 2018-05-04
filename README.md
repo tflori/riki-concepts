@@ -1,5 +1,12 @@
 # Conceptual ideas for Ríki community
 
+## Project
+
+Riki is a project to bring developers the idea near to design their own project structure and get a clear understanding
+of what is reusable code and what not. The framework itself contains only a few classes and has no tight coupling to
+other libraries that are recommended. There will be a skeleton project without any examples but in the guide it is also
+recommended to start from an empty project.
+
 ## Goals of the community website
 
 - example website for this framework
@@ -32,12 +39,12 @@ got new (comments on answers/questions, reputation changes, direct messages).
 
 The header is large and shows the large logo of the framework on the left side and the users profile image right with
 two lines of information. When scrolled to `heightOfLargeHeader - heightOfSmallHeader` the small header gets visible.
-This small header shows the small logo of the framework on the left side and the users profile icon with reuptation and
+This small header shows the small logo of the framework on the left side and the users profile icon with reputation and
 basic information on the right side.
 
 ### Homepage
 
-The homepage should show a brief description about the framework, a highlighted link how to get startet (the guide) and
+The homepage should show a brief description about the framework, a highlighted link how to get started (the guide) and
 a list of teasers to the latest blog posts.
 
 ## Blog
