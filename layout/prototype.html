@@ -3,58 +3,79 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="icon" href="../images/favicon.png" sizes="48x48">
+    <link rel="apple-touch-icon" sizes="256x256" href="../images/favicon-2x.png">
     <title>Ríki:layout</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans">
     <style>
 
-div, body, input, select { font-family: "Noto Sans", sans-serif; }
-nav .nav-wrapper { max-width: 992px; margin: 0 auto; padding: 0 20px; }
-nav .sidenav-toggle { padding: 0 20px; margin-left: -20px; }
-nav ul li:last-child { margin-right: -20px; }
-nav .brand-logo .subtitle { display: none; }
+      div, body, input, select { font-family: "Noto Sans", sans-serif; }
+      nav .nav-wrapper { max-width: 992px; margin: 0 auto; padding: 0 20px; }
+      nav .sidenav-toggle { padding: 0 20px; margin-left: -20px; }
+      nav ul li:last-child { margin-right: -20px; }
 
-.riki-teal { background: #00ae9a; color: #ffffff; }
+      .riki-teal { background: #00ae9a; color: #ffffff; }
 
-header nav { overflow: hidden; height: 392px; position: relative; }
-header .logo-wrapper { position: relative; max-width: 992px; margin: 0 auto; }
-header .logo-wrapper div { position: absolute; }
-#header-background-icon {
-  top: 82px; left: 92px; width: 83px; height: 86px;
-  background: url('icon.png') no-repeat;
-  background-size: 100%;
-}
-#header-background-modules {
-  top: 40px; left: 40px; width: 187px; height: 172px;
-  background: url('modules.png') no-repeat;
-  background-size: 100%;
-}
-#header-background-name {
-  top: 242px; left: 40px; width: 187px; height: 67px;
-  background: url('name.png') no-repeat;
-  background-size: 100%;
-}
-#header-background-subtitle {
-  top: 298px; left: 40px; width: 187px;
-  font-weight: 200; font-size: 19px;
-  text-align: center;
-}
-header ul { position: relative; top: calc(392px - 64px); }
+      header nav { overflow: hidden; height: 640px; position: relative; }
+      header .logo-wrapper div { position: absolute; }
+      #header-background-icon {
+        top: 82px; left: 92px; width: 83px; height: 86px;
+        background: url('icon.png') no-repeat;
+        background-size: 100%;
+      }
+      #header-background-modules {
+        top: 40px; left: 40px; width: 187px; height: 172px;
+        background: url('modules.png') no-repeat;
+        background-size: 100%;
+      }
+      #header-background-name {
+        top: 242px; left: 40px; width: 187px; height: 67px;
+        background: url('name.png') no-repeat;
+        background-size: 100%;
+      }
+      #header-background-subtitle {
+        top: 298px; left: 40px; width: 187px; height: 20px;
+        background: url('subtitle.png') no-repeat;
+        background-size: 100%;
+      }
+      header ul { position: relative; top: calc(640px - 64px); }
 
-.navbar-fixed { position: absolute; top: 0px; display: none; }
+      .navbar-fixed { position: absolute; top: 0px; display: none; }
 
-@media only screen and (max-width: 992px) {
-  nav .brand-logo.left { left: auto; }
-  nav .brand-logo .subtitle { display: inline; }
-}
+      nav .brand-logo.left { position: absolute; top: 0; left: 0; height: 100%; width: 374px; }
+      nav .brand-logo.left div { position: absolute; }
+      #logo-icon {
+        bottom: 16px; left: 10px; height: 32px; width: 31px;
+        background: url('icon-small.png') no-repeat;
+        background-size: 100%;
+      }
+      #logo-name {
+        bottom: 16px; left: 52px; height: 32px; width: 90px;
+        background: url('name-small.png') no-repeat;
+        background-size: 100%;
+      }
+      #logo-subtitle {
+        bottom: 19px; left: 164px; height: 20px; width: 187px;
+        background: url('subtitle.png') no-repeat;
+        background-size: 100%;
+      }
 
-@media only screen and (max-width: 600px) {
-  nav ul li.icon a { height: 56px; width: 64px; padding: 0 20px }
-  nav .icon-text { display: none !important; }
-  header { display: none; }
-  .navbar-fixed { display: block; }
-}
+      @media only screen and (max-width: 992px) {
+        nav .brand-logo.left { left: 64px; }
+      }
+
+      @media only screen and (max-width: 600px) {
+        nav .brand-logo.left { width: 160px; }
+        #logo-icon { bottom: 9px; height: 36px; width: 34px; }
+        #logo-subtitle { display: none; }
+        nav ul li.icon a { height: 56px; width: 64px; padding: 0 20px }
+        nav .icon-text { display: none !important; }
+        header { display: none; }
+        .navbar-fixed { display: block; }
+      }
 
     </style>
   </head>
@@ -63,13 +84,13 @@ header ul { position: relative; top: calc(392px - 64px); }
 <!-- Header -->
 <header>
   <nav class="teal darken-1">
-    <div class="logo-wrapper">
-      <div id="header-background-icon"></div>
-      <div id="header-background-modules"></div>
-      <div id="header-background-name"></div>
-      <div id="header-background-subtitle">Connecting Libraries</div>
-    </div>
     <div class="nav-wrapper">
+      <div class="logo-wrapper">
+        <div id="header-background-icon"></div>
+        <div id="header-background-modules"></div>
+        <div id="header-background-name"></div>
+        <div id="header-background-subtitle"></div>
+      </div>
       <a href="#" data-target="mobile-demo" class="sidenav-toggle left hide-on-large-only"><i class="material-icons">menu</i></a>
       <ul class="right">
         <li class="icon"><a class="btnLogin"><i class="material-icons left">account_circle</i><span class="icon-text"> Login / Signup</span></a></li>
@@ -86,7 +107,7 @@ header ul { position: relative; top: calc(392px - 64px); }
   <nav class="teal darken-1">
     <div class="nav-wrapper">
       <a href="#" data-target="mobile-demo" class="sidenav-toggle left hide-on-large-only"><i class="material-icons">menu</i></a>
-      <a href="/home" class="left brand-logo"><img src="logo-small.png" /> <span class="subtitle">Connecting Libraries</span></a>
+      <a href="/home" class="brand-logo left"><div id="logo-icon"></div><div id="logo-name"></div><div id="logo-subtitle"></div></a>
       <ul class="right">
         <li class="icon"><a class="btnLogin"><i class="material-icons left">account_circle</i><span class="icon-text"> Login / Signup</span></a></li>
       </ul>
