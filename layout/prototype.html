@@ -129,26 +129,150 @@
           let heightOfLargeHeader = $('body > header').height();
           let heightOfSmallHeader = $('div.navbar-fixed').height();
           let headerAnimationEnd = heightOfLargeHeader - heightOfSmallHeader;
+
+          let headerIcon = $('#header-background-icon');
+          let headerModules = $('#header-background-modules');
+          let headerName = $('#header-background-name');
+          let headerSubtitle = $('#header-background-subtitle');
+          let logoIcon = $('#logo-icon');
+          let logoName = $('#logo-name');
+          let logoSubtitle = $('#logo-subtitle');
+          let iconRatio = logoIcon.width()/headerIcon.width();
+          $('div.navbar-fixed').show();
           let scrollAnimations = [
               {
                   from: 0,
                   to: 200,
+                  before: [
+                      {
+                          element: headerIcon,
+                          styles: {
+                              left: '',
+                              width: '',
+                              height: '',
+                              top: '',
+                          }
+                      },
+                      {
+                          element: headerModules,
+                          styles: {
+                              opacity: '1',
+                              left: '',
+                              width: '',
+                              height: '',
+                          }
+                      },
+                      {
+                          element: headerName,
+                          styles: {
+                              left: '',
+                              width: '',
+                          }
+                      },
+                      {
+                          element: headerSubtitle,
+                          styles: {
+                              left: '',
+                          }
+                      },
+                  ],
                   during: [
-                      // {
-                      //     element: $('#header-background-name'),
-                      //     vars: {
-                      //         left: [40, 124],
-                      //     },
-                      //     styles: {
-                      //         left: '%left%px',
-                      //     }
-                      // }
+                      {
+                          element: headerIcon,
+                          vars: {
+                              left: [headerIcon.offset().left, logoIcon.offset().left],
+                              width: [headerIcon.width(), logoIcon.width()],
+                              height: [headerIcon.height(), logoIcon.height()],
+                              top: [headerIcon.offset().top, headerIcon.offset().top + iconRatio*44 + iconRatio*headerModules.height()]
+                          },
+                          styles: {
+                              left: '%left%px',
+                              width: '%width%px',
+                              height: '%height%px',
+                              top: '%top%px',
+                          }
+                      },
+                      {
+                          element: headerModules,
+                          vars: {
+                              left: [headerModules.offset().left, logoIcon.offset().left - iconRatio*52],
+                              width: [headerModules.width(), iconRatio*headerModules.width()],
+                              height: [headerModules.height(), iconRatio*headerModules.height()],
+                          },
+                          styles: {
+                              opacity: '%i%',
+                              left: '%left%px',
+                              width: '%width%px',
+                              height: '%height%px',
+                          }
+                      },
+                      {
+                          element: headerName,
+                          vars: {
+                              left: [headerName.offset().left, logoName.offset().left],
+                              width: [headerName.width(), logoName.width()],
+                          },
+                          styles: {
+                              left: '%left%px',
+                              width: '%width%px',
+                          }
+                      },
+                      {
+                          element: headerSubtitle,
+                          vars: {
+                              left: [headerSubtitle.offset().left, logoSubtitle.offset().left],
+                          },
+                          styles: {
+                              left: '%left%px',
+                          }
+                      },
+                  ],
+                  after: [
+                      {
+                          element: headerIcon,
+                          styles: {
+                              left: logoIcon.offset().left + 'px',
+                              width: logoIcon.width() + 'px',
+                              height: logoIcon.height() + 'px',
+                          }
+                      },
+                      {
+                          element: headerModules,
+                          styles: {
+                              opacity: '0',
+                          }
+                      },
+                      {
+                          element: headerName,
+                          styles: {
+                              left: logoName.offset().left + 'px',
+                              width: logoName.width() + 'px',
+                          }
+                      },
+                      {
+                          element: headerSubtitle,
+                          styles: {
+                              left: logoSubtitle.offset().left + 'px',
+                          }
+                      },
                   ],
               },
               {
                   from: 200,
                   to: headerAnimationEnd,
                   before: [
+                      {
+                          element: headerName,
+                          styles: {
+                              top: '',
+                          }
+                      },
+                      {
+                          element: headerSubtitle,
+                          styles: {
+                              top: '',
+                          }
+                      },
                       {
                           element: $('div.navbar-fixed'),
                           styles: {
@@ -163,33 +287,33 @@
                       },
                   ],
                   during: [
-                      // {
-                      //     element: $('#header-background-icon'),
-                      //     vars: {
-                      //         top: [82, 231+64+24+20],
-                      //         left: [92, 10+20],
-                      //         width: [83, 43],
-                      //     },
-                      //     styles: {
-                      //         top: '%top%px',
-                      //         left: '%left%px',
-                      //         width: '%width%px',
-                      //     }
-                      // },
-                      // {
-                      //     element: $('#header-background-modules'),
-                      //     vars: {
-                      //         top: [40, 189+64+24+44],
-                      //         left: [40, -42+44],
-                      //         width: [187, 99],
-                      //     },
-                      //     styles: {
-                      //         opacity: '%i%',
-                      //         top: '%top%px',
-                      //         left: '%left%px',
-                      //         width: '%width%px',
-                      //     }
-                      // },
+                      {
+                          element: headerIcon,
+                          vars: {
+                              top: [headerIcon.offset().top + iconRatio*44 + iconRatio*headerModules.height(), logoIcon.offset().top + headerAnimationEnd],
+                          },
+                          styles: {
+                              top: '%top%px',
+                          }
+                      },
+                      {
+                          element: headerName,
+                          vars: {
+                              top: [headerName.offset().top, logoName.offset().top + headerAnimationEnd],
+                          },
+                          styles: {
+                              top: '%top%px',
+                          }
+                      },
+                      {
+                          element: headerSubtitle,
+                          vars: {
+                              top: [headerSubtitle.offset().top, logoSubtitle.offset().top + headerAnimationEnd],
+                          },
+                          styles: {
+                              top: '%top%px',
+                          }
+                      },
                       {
                           element: $('div.navbar-fixed'),
                           styles: {
@@ -219,6 +343,8 @@
                   ],
               },
           ];
+          $('div.navbar-fixed').hide();
+          console.log(scrollAnimations);
 
           let applyStyles = function applyStyles(definition, p) {
               let v, vars = {
@@ -230,6 +356,12 @@
                   let start, end, diff, current;
                   for (v in definition.vars) {
                       [start, end] = definition.vars[v];
+                      // if (typeof start === 'function') {
+                      //     start = start();
+                      // }
+                      // if (typeof end === 'function') {
+                      //     end = end();
+                      // }
                       diff = Math.abs(end - start);
                       current = p * diff;
                       vars[v] = start > end ? start - current : start + current;
@@ -253,29 +385,30 @@
 
               let p, elements, j, i = scrollAnimations.length;
               while (i--) {
+                  elements = [];
                   if (st <= scrollAnimations[i].from) {
                       p = 0;
-                      elements = scrollAnimations[i].before;
+                      elements.push.apply(elements, scrollAnimations[i].before || []);
                   } else if (st >= scrollAnimations[i].to) {
                       p = 1;
-                      elements = scrollAnimations[i].after;
+                      elements.push.apply(elements, scrollAnimations[i].after || []);
                   } else {
                       p = (st - scrollAnimations[i].from) / (scrollAnimations[i].to - scrollAnimations[i].from);
-                      elements = scrollAnimations[i].during;
+                      elements.push.apply(elements, scrollAnimations[i].during || []);
                   }
-                  j = elements ? elements.length : 0;
+                  j = elements.length;
                   while (j--) {
                       applyStyles(elements[j], p);
                   }
               }
           }).scroll();
 
-          w.setTimeout(function() {
-              let st = d.documentElement.scrollTop || d.body.scrollTop;
-              if (st < 100) {
-                  $(w).scrollTo(headerAnimationEnd, 1000);
-              }
-          }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 10000);
+          // w.setTimeout(function() {
+          //     let st = d.documentElement.scrollTop || d.body.scrollTop;
+          //     if (st < 100) {
+          //         $(w).scrollTo(headerAnimationEnd, 1000);
+          //     }
+          // }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 5000);
       });
   }(jQuery, window, document))
 </script>
