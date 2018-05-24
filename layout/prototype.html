@@ -180,10 +180,10 @@
                       {
                           element: headerIcon,
                           vars: {
-                              left: [headerIcon.offset().left, logoIcon.offset().left],
+                              left: [headerIcon.position().left, logoIcon.position().left],
                               width: [headerIcon.width(), logoIcon.width()],
                               height: [headerIcon.height(), logoIcon.height()],
-                              top: [headerIcon.offset().top, headerIcon.offset().top + iconRatio*44 + iconRatio*headerModules.height()]
+                              top: [headerIcon.position().top, headerIcon.position().top + iconRatio*44 + iconRatio*headerModules.height()]
                           },
                           styles: {
                               left: '%left%px',
@@ -195,7 +195,7 @@
                       {
                           element: headerModules,
                           vars: {
-                              left: [headerModules.offset().left, logoIcon.offset().left - iconRatio*52],
+                              left: [headerModules.position().left, logoIcon.position().left - iconRatio*52],
                               width: [headerModules.width(), iconRatio*headerModules.width()],
                               height: [headerModules.height(), iconRatio*headerModules.height()],
                           },
@@ -209,7 +209,7 @@
                       {
                           element: headerName,
                           vars: {
-                              left: [headerName.offset().left, logoName.offset().left],
+                              left: [headerName.position().left, logoName.position().left],
                               width: [headerName.width(), logoName.width()],
                           },
                           styles: {
@@ -220,7 +220,7 @@
                       {
                           element: headerSubtitle,
                           vars: {
-                              left: [headerSubtitle.offset().left, logoSubtitle.offset().left],
+                              left: [headerSubtitle.position().left, logoSubtitle.position().left],
                           },
                           styles: {
                               left: '%left%px',
@@ -231,7 +231,7 @@
                       {
                           element: headerIcon,
                           styles: {
-                              left: logoIcon.offset().left + 'px',
+                              left: logoIcon.position().left + 'px',
                               width: logoIcon.width() + 'px',
                               height: logoIcon.height() + 'px',
                           }
@@ -245,14 +245,14 @@
                       {
                           element: headerName,
                           styles: {
-                              left: logoName.offset().left + 'px',
+                              left: logoName.position().left + 'px',
                               width: logoName.width() + 'px',
                           }
                       },
                       {
                           element: headerSubtitle,
                           styles: {
-                              left: logoSubtitle.offset().left + 'px',
+                              left: logoSubtitle.position().left + 'px',
                           }
                       },
                   ],
@@ -290,7 +290,7 @@
                       {
                           element: headerIcon,
                           vars: {
-                              top: [headerIcon.offset().top + iconRatio*44 + iconRatio*headerModules.height(), logoIcon.offset().top + headerAnimationEnd],
+                              top: [headerIcon.position().top + iconRatio*44 + iconRatio*headerModules.height(), logoIcon.position().top + headerAnimationEnd],
                           },
                           styles: {
                               top: '%top%px',
@@ -299,7 +299,7 @@
                       {
                           element: headerName,
                           vars: {
-                              top: [headerName.offset().top, logoName.offset().top + headerAnimationEnd],
+                              top: [headerName.position().top, logoName.position().top + headerAnimationEnd],
                           },
                           styles: {
                               top: '%top%px',
@@ -308,7 +308,7 @@
                       {
                           element: headerSubtitle,
                           vars: {
-                              top: [headerSubtitle.offset().top, logoSubtitle.offset().top + headerAnimationEnd],
+                              top: [headerSubtitle.position().top, logoSubtitle.position().top + headerAnimationEnd],
                           },
                           styles: {
                               top: '%top%px',
@@ -403,12 +403,12 @@
               }
           }).scroll();
 
-          // w.setTimeout(function() {
-          //     let st = d.documentElement.scrollTop || d.body.scrollTop;
-          //     if (st < 100) {
-          //         $(w).scrollTo(headerAnimationEnd, 1000);
-          //     }
-          // }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 5000);
+          w.setTimeout(function() {
+              let st = d.documentElement.scrollTop || d.body.scrollTop;
+              if (st < 100) {
+                  $(w).scrollTo(headerAnimationEnd, 1000);
+              }
+          }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 5000);
       });
   }(jQuery, window, document))
 </script>
