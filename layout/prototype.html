@@ -18,44 +18,40 @@
       nav ul li:last-child { margin-right: -20px; }
 
       header nav { overflow: hidden; height: 640px; position: relative; }
-      header .logo-wrapper div { position: absolute; }
+      header .logo-wrapper div { position: absolute; background-repeat: no-repeat; background-size: 100%; }
       #header-background-icon {
         bottom: 334px; left: calc(50% - 41px); width: 83px; height: 86px;
-        background: url('icon.png') no-repeat;
-        background-size: 100%;
+        background-image: url('../images/icon.svg');
       }
       #header-background-modules {
         bottom: 290px; left: calc(50% - 93px); width: 187px; height: 172px;
-        background: url('modules.png') no-repeat;
-        background-size: 100%;
+        background-image: url('../images/modules.svg');
       }
       #header-background-name {
         bottom: 196px; left: calc(50% - 93px); width: 187px; height: 67px;
-        background: url('name.png') no-repeat;
-        background-size: 100%;
+        background-image: url('../images/name.svg');
       }
       #header-background-subtitle {
         bottom: 170px; left: calc(50% - 93px); width: 187px; height: 20px;
-        background: url('subtitle.png') no-repeat;
-        background-size: 100%;
+        background-image: url('../images/subtitle.svg');
       }
       header ul { position: relative; top: calc(640px - 64px); }
 
       .navbar-fixed { position: absolute; top: 0px; display: none; }
 
       nav .brand-logo.left { position: absolute; top: 0; left: 0; height: 100%; width: 374px; }
-      nav .brand-logo.left div { position: absolute; }
+      nav .brand-logo.left div { position: absolute; background-repeat: no-repeat; background-size: 100%; }
       #logo-icon {
         bottom: 16px; left: 10px; height: 32px; width: 31px;
-        background: url('icon-small.png') no-repeat;
+        background-image: url('../images/icon.svg');
       }
       #logo-name {
         bottom: 16px; left: 52px; height: 32px; width: 90px;
-        background: url('name-small.png') no-repeat;
+        background-image: url('../images/name.svg');
       }
       #logo-subtitle {
         bottom: 12px; left: 164px; height: 20px; width: 187px;
-        background: url('subtitle.png') no-repeat;
+        background-image: url('../images/subtitle.svg');
       }
 
       @media only screen and (max-width: 992px) {
@@ -127,7 +123,7 @@
       // $ = jQuery, w = window, d = document, u = undefined
       $(d).ready(function() {
           let heightOfLargeHeader = $('body > header').height();
-          let heightOfSmallHeader = $('div.navbar-fixed').height();
+          let heightOfSmallHeader = $('.navbar-fixed').height();
           let headerAnimationEnd = heightOfLargeHeader - heightOfSmallHeader;
 
           let headerIcon = $('#header-background-icon');
@@ -138,7 +134,8 @@
           let logoName = $('#logo-name');
           let logoSubtitle = $('#logo-subtitle');
           let iconRatio = logoIcon.width()/headerIcon.width();
-          $('div.navbar-fixed').show();
+          $('.navbar-fixed').show();
+          let offset = $('.navbar-fixed .sidenav-toggle').is(':visible') ? 64 : 0;
           let scrollAnimations = [
               {
                   from: 0,
@@ -180,7 +177,7 @@
                       {
                           element: headerIcon,
                           vars: {
-                              left: [headerIcon.position().left, logoIcon.position().left],
+                              left: [headerIcon.position().left, offset + logoIcon.position().left],
                               width: [headerIcon.width(), logoIcon.width()],
                               height: [headerIcon.height(), logoIcon.height()],
                               top: [headerIcon.position().top, headerIcon.position().top + iconRatio*44 + iconRatio*headerModules.height()]
@@ -195,7 +192,7 @@
                       {
                           element: headerModules,
                           vars: {
-                              left: [headerModules.position().left, logoIcon.position().left - iconRatio*52],
+                              left: [headerModules.position().left, offset + logoIcon.position().left - iconRatio*52],
                               width: [headerModules.width(), iconRatio*headerModules.width()],
                               height: [headerModules.height(), iconRatio*headerModules.height()],
                           },
@@ -209,7 +206,7 @@
                       {
                           element: headerName,
                           vars: {
-                              left: [headerName.position().left, logoName.position().left],
+                              left: [headerName.position().left, offset + logoName.position().left],
                               width: [headerName.width(), logoName.width()],
                           },
                           styles: {
@@ -220,10 +217,12 @@
                       {
                           element: headerSubtitle,
                           vars: {
-                              left: [headerSubtitle.position().left, logoSubtitle.position().left],
+                              left: [headerSubtitle.position().left, logoSubtitle.is(':visible') ? offset + logoSubtitle.position().left : $('body > header').width()],
+                              opacity: [1, logoSubtitle.is(':visible') ? 1 : 0]
                           },
                           styles: {
                               left: '%left%px',
+                              opacity: '%opacity%'
                           }
                       },
                   ],
@@ -231,7 +230,7 @@
                       {
                           element: headerIcon,
                           styles: {
-                              left: logoIcon.position().left + 'px',
+                              left: offset + logoIcon.position().left + 'px',
                               width: logoIcon.width() + 'px',
                               height: logoIcon.height() + 'px',
                           }
@@ -245,14 +244,15 @@
                       {
                           element: headerName,
                           styles: {
-                              left: logoName.position().left + 'px',
+                              left: offset + logoName.position().left + 'px',
                               width: logoName.width() + 'px',
                           }
                       },
                       {
                           element: headerSubtitle,
                           styles: {
-                              left: logoSubtitle.position().left + 'px',
+                              left: logoSubtitle.is(':visible') ? offset + logoSubtitle.position().left + 'px' : $('body > header').width() + 'px',
+                              opacity: logoSubtitle.is(':visible') ? '1' : '0',
                           }
                       },
                   ],

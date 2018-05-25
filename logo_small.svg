@@ -38,7 +38,7 @@
      inkscape:showpageshadow="false"
      inkscape:pagecheckerboard="false"
      inkscape:window-width="3840"
-     inkscape:window-height="2096"
+     inkscape:window-height="2027"
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:window-maximized="1"
@@ -86,7 +86,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,18 +100,18 @@
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.37248996;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        d="m 34.352405,625.53331 c -1.288252,1.8654 -2.428496,3.18507 -2.977011,3.18507 -0.546964,0 -1.683054,-1.31277 -2.966822,-3.16979 0.34288,3.69648 0.551351,7.61202 -2.135269,9.56396 -2.376389,1.72656 -5.516881,0.8233 -8.570182,-0.42487 0.27266,1.53712 0.430416,2.83081 0.317198,3.17925 -0.109437,0.33683 -0.950435,1.24373 -2.020319,2.28151 3.179832,0.7842 6.215825,1.9027 7.117323,4.67721 1.045799,3.21865 -1.537186,6.31789 -4.031914,9.15002 1.81289,-0.16356 3.232766,-0.16763 3.594673,0.0954 0.367071,0.26669 0.80979,1.65001 1.219324,3.46227 1.928689,-3.2605 4.081555,-6.70409 7.480354,-6.70409 3.079419,0 5.136644,2.83318 6.931076,5.79032 0.748366,-1.31976 1.44474,-2.42369 1.725675,-2.6278 0.275714,-0.20031 1.496911,-0.51376 2.947181,-0.81263 -2.248619,-2.61276 -4.289757,-5.43491 -3.341495,-8.35339 0.927396,-2.85421 4.113139,-3.95461 7.390872,-4.74269 -1.228399,-0.99428 -2.144215,-1.8495 -2.263316,-2.21603 -0.123619,-0.38046 0.139326,-1.69498 0.577653,-3.30221 -3.144176,1.30834 -6.408779,2.3296 -8.861188,0.54782 -2.690224,-1.95456 -2.477789,-5.87817 -2.133813,-9.57923 z"
        id="path812"
-       inkscape:export-filename="/home/iras/work/projects/riki/concept/layout/icon-small.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+       inkscape:export-filename="/home/iras/work/projects/riki/concept/layout/icon-small-2x.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.08720398px;line-height:19.92311287px;font-family:'GE Inspira';-inkscape-font-specification:'GE Inspira';text-align:center;letter-spacing:13.45168972px;word-spacing:0.98895466px;text-anchor:middle;fill:#fcfcfc;fill-opacity:1;stroke:none;stroke-width:0.480075"
        x="55.3228"
        y="657.53333"
        id="text2304"
-       inkscape:export-filename="/home/iras/work/projects/riki/concept/layout/name-small.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
+       inkscape:export-filename="/home/iras/work/projects/riki/concept/layout/name-small-2x.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
          sodipodi:role="line"
          id="tspan2302"
          x="55.3228"
@@ -124,12 +124,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.19610596px;line-height:8.41504383px;font-family:'GE Inspira';-inkscape-font-specification:'GE Inspira';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.63112831"
        x="262.35382"
-       y="646.7843"
+       y="656.7843"
        id="text834"><tspan
          sodipodi:role="line"
          id="tspan832"
          x="262.35382"
-         y="646.7843"
+         y="656.7843"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Light';fill:#ffffff;fill-opacity:1;stroke-width:0.63112831">Connecting Libraries</tspan></text>
   </g>
 </svg>
