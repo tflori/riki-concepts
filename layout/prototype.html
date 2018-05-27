@@ -12,10 +12,38 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans">
     <style>
 
-      div, body, input, select { font-family: "Noto Sans", sans-serif; }
+      body, input, select { font-family: "Noto Sans", sans-serif; }
       nav .nav-wrapper { max-width: 992px; margin: 0 auto; padding: 0 20px; }
       nav .sidenav-toggle { padding: 0 20px; margin-left: -20px; position: absolute; bottom: 0; }
+      nav .sidenav-toggle .close-icon { display: none; }
       nav ul li:last-child { margin-right: -20px; }
+      .sidenav-overlay { top: 64px; }
+      .sidenav { top: 64px; width: 248px; }
+      .tabs .tab a:focus, .tabs .tab a:focus.active { background-color: rgba(0, 137, 123, 0.1); }
+      .tabs .indicator { background-color: rgba(0, 137, 123, 1); }
+      label.label-icon.right { left: auto; right: 0; }
+
+      .container { max-width: 992px; width: 100%; }
+      .main.container { margin-top: 24px; }
+      #right-col { padding: 0 0 0 0.75rem; }
+      /*#right-col > .card:first-child { margin-top: 0; }*/
+      /*#left-col > .card:first-child { margin-top: 0; }*/
+      #left-col { width: 248px; position: absolute; z-index: 2; }
+      #left-col .nav { margin-top: 24px; }
+      #left-col .nav li { height: 48px; line-height: 48px; font-size: 14px; font-weight: 500; }
+      #left-col .nav li>a { color: rgba(0,0,0,0.87); display: block; padding: 0 32px;  }
+      #left-col .nav li>a>i { float: left; height: 48px; line-height: 48px; margin: 0 32px 0 0; width: 24px; color: rgba(0,0,0,0.54); }
+
+      .card.search:not(.active) { box-shadow: none; background: none; }
+      .card-content.search { padding: 5px 32px; }
+      .card-content.search .input-field { margin: 0; }
+      .card-content.search .input-field input { padding-right: 28px; box-sizing: border-box; }
+      .card.search-result { padding: 16px; }
+      .card.search-result .row { margin-bottom: 0; }
+      .card.search-result .material-icons { font-size: 48px; color: rgba(0, 137, 123, 1); margin-right: 16px; }
+      .card.search-result h6 { margin-top: 0; }
+      .card.search-result .col.icon { width: calc(48px + 1.5rem); }
+      .card.search-result .col.text { width: calc(100% - 48px - 1.5rem); }
 
       header nav { overflow: hidden; height: 640px; position: relative; }
       header .logo-wrapper div { position: absolute; background-repeat: no-repeat; background-size: 100%; }
@@ -42,34 +70,40 @@
       nav .brand-logo.left { position: absolute; top: 0; left: 0; height: 100%; width: 374px; }
       nav .brand-logo.left div { position: absolute; background-repeat: no-repeat; background-size: 100%; }
       #logo-icon {
-        bottom: 16px; left: 10px; height: 32px; width: 31px;
+        bottom: calc(50% - 13px); left: 16px; height: 26px; width: 25px;
         background-image: url('../images/icon.svg');
       }
       #logo-name {
-        bottom: 16px; left: 52px; height: 32px; width: 90px;
+        bottom: calc(50% - 13px); left: 56px; height: 26px; width: 73px;
         background-image: url('../images/name.svg');
       }
       #logo-subtitle {
-        bottom: 12px; left: 164px; height: 20px; width: 187px;
+        bottom: 13px; left: 148px; height: 20px; width: 187px;
         background-image: url('../images/subtitle.svg');
       }
 
       @media only screen and (max-width: 992px) {
         nav .brand-logo.left { left: 64px; }
+        #logo-icon { left: 4px; }
+        #logo-name { left: 44px; }
+        #logo-subtitle { left: 136px; }
+        #right-col { padding: 0; }
+        .main.container { margin-top: 8px; }
       }
 
       @media only screen and (max-width: 600px) {
-        nav .brand-logo.left { width: 160px; }
+        nav .brand-logo.left { width: 140px; }
         #logo-subtitle { display: none; }
         nav ul li.icon a { height: 56px; width: 64px; padding: 0 20px }
+        .sidenav-overlay { top: 56px; }
+        .sidenav { top: 56px; }
         nav .icon-text { display: none; }
-        /*.navbar-fixed { display: block !important; }*/
         header ul { top: calc(100% - 56px); }
       }
 
     </style>
   </head>
-  <body>
+  <body class="grey lighten-4">
 
 <!-- Header -->
 <header>
@@ -81,7 +115,7 @@
         <div id="header-background-name"></div>
         <div id="header-background-subtitle"></div>
       </div>
-      <a href="#" data-target="mobile-demo" class="sidenav-toggle left hide-on-large-only"><i class="material-icons">menu</i></a>
+      <a href="#" class="sidenav-toggle left hide-on-large-only"><i class="material-icons menu-icon">menu</i><i class="material-icons close-icon">close</i></a>
       <ul class="right">
         <li class="icon"><a class="btnLogin"><i class="material-icons left">account_circle</i><span class="icon-text"> Login / Signup</span></a></li>
       </ul>
@@ -96,7 +130,7 @@
 <div class="navbar-fixed">
   <nav class="teal darken-1">
     <div class="nav-wrapper">
-      <a href="#" data-target="mobile-demo" class="sidenav-toggle left hide-on-large-only"><i class="material-icons">menu</i></a>
+      <a href="#" class="sidenav-toggle left hide-on-large-only"><i class="material-icons menu-icon">menu</i><i class="material-icons close-icon">close</i></a>
       <a href="/home" class="brand-logo left"><div id="logo-icon"></div><div id="logo-name"></div><div id="logo-subtitle"></div></a>
       <ul class="right">
         <li class="icon"><a class="btnLogin"><i class="material-icons left">account_circle</i><span class="icon-text"> Login / Signup</span></a></li>
@@ -108,10 +142,184 @@
   </nav>
 </div>
 
-<!-- Navigation -->
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-nav">
+  <li><a href="/home"><i class="material-icons">home</i> Home</a></li>
+  <li><a href="/blog"><i class="material-icons">rss_feed</i> Blog</a></li>
+  <li><a href="/guide"><i class="material-icons">toc</i> Guide</a></li>
+  <li><a href="/docs"><i class="material-icons">library_books</i> Documentation</a></li>
+  <li><a href="/exchange"><i class="material-icons">question_answer</i> Exchange</a></li>
+</ul>
+
 <!-- Content -->
-<div style="height:2000px;"></div>
+<div class="main container">
+  <div class="row">
+    <div class="col l4 hide-on-med-and-down" id="left-col">
+      <div class="card search">
+        <div class="card-content search">
+          <div class="input-field">
+            <input type="text" placeholder="Search">
+            <label class="label-icon right"><i class="material-icons">search</i></label>
+          </div>
+        </div>
+      </div>
+      <ul class="nav">
+        <li><a href="/home"><i class="material-icons">home</i> Home</a></li>
+        <li><a href="/blog"><i class="material-icons">rss_feed</i> Blog</a></li>
+        <li><a href="/guide"><i class="material-icons">toc</i> Guide</a></li>
+        <li><a href="/docs"><i class="material-icons">library_books</i> Documentation</a></li>
+        <li><a href="/exchange"><i class="material-icons">question_answer</i> Exchange</a></li>
+      </ul>
+    </div>
+    <div class="col s12 l9 offset-l3" id="right-col">
+      <div class="card search show-on-medium-and-down" style="display: none;">
+        <div class="card-content search">
+          <div class="input-field">
+            <input name="riki-search" id="search" type="text" placeholder="Search">
+            <label class="label-icon right"><i class="material-icons">search</i></label>
+          </div>
+        </div>
+        <div class="card-tabs" style="display: none">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="teal-text active" href="#search-everywhere">Everywhere</a></li>
+            <li class="tab"><a class="teal-text" href="#search-documentation">documentation</a></li>
+            <li class="tab"><a class="teal-text" href="#search-exchange">exchange</a></li>
+            <li class="tab"><a class="teal-text" href="#search-guide">guide</a></li>
+          </ul>
+        </div>
+        <div class="card-content grey lighten-5" style="display: none">
+          <div id="search-everywhere">
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">library_books</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Documentation - Bootstrap</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/documentation/boostrap">/documentation/bootstrap</a></div>
+              </div>
+            </div>
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">toc</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Guide - Bootstrap</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/guide/boostrap">/guide/bootstrap</a></div>
+              </div>
+            </div>
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">question_answer</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a></div>
+              </div>
+            </div>
+          </div>
+          <div id="search-documentation">
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">library_books</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Documentation - Bootstrap</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/documentation/boostrap">/documentation/bootstrap</a></div>
+              </div>
+            </div>
+          </div>
+          <div id="search-exchange">
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">question_answer</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a></div>
+              </div>
+            </div>
+          </div>
+          <div id="search-guide">
+            <div class="card search-result">
+              <div class="row">
+                <div class="col icon"><i class="material-icons">toc</i></div>
+                <div class="col text grey-text text-darken-2">
+                  <h6 class="teal-text">Guide - Bootstrap</h6>
+                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12"><a href="/guide/boostrap">/guide/bootstrap</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Lorem Ipsum</span>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.<br><br></p>
+
+          <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.<br><br></p>
+
+          <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.<br><br></p>
+
+          <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui.<br><br></p>
+
+          <p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing.<br><br></p>
+
+          <p>Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque.<br><br></p>
+
+          <p>Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.<br><br></p>
+
+          <p>Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis<br><br></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
+<footer class="page-footer teal darken-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2018 Copyright Thomas Flori
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
 
 <!-- JS sources -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -180,7 +388,7 @@
                               left: [headerIcon.position().left, offset + logoIcon.position().left],
                               width: [headerIcon.width(), logoIcon.width()],
                               height: [headerIcon.height(), logoIcon.height()],
-                              top: [headerIcon.position().top, headerIcon.position().top + iconRatio*44 + iconRatio*headerModules.height()]
+                              top: [headerIcon.position().top, headerModules.position().top + headerModules.height() - iconRatio*44 - iconRatio*headerIcon.height()], // 311
                           },
                           styles: {
                               left: '%left%px',
@@ -285,12 +493,19 @@
                               opacity: '1'
                           },
                       },
+                      {
+                          element: $('#left-col'),
+                          styles: {
+                              position: 'absolute',
+                              top: '',
+                          },
+                      },
                   ],
                   during: [
                       {
                           element: headerIcon,
                           vars: {
-                              top: [headerIcon.position().top + iconRatio*44 + iconRatio*headerModules.height(), logoIcon.position().top + headerAnimationEnd],
+                              top: [headerModules.position().top + headerModules.height() - iconRatio*44 - iconRatio*headerIcon.height(), logoIcon.position().top + headerAnimationEnd],
                           },
                           styles: {
                               top: '%top%px',
@@ -323,7 +538,14 @@
                       {
                           element: $('body header'),
                           styles: {
-                              opacity: '1'
+                              opacity: '1',
+                          },
+                      },
+                      {
+                          element: $('#left-col'),
+                          styles: {
+                              position: 'absolute',
+                              top: '',
                           },
                       },
                   ],
@@ -337,9 +559,16 @@
                       {
                           element: $('body header'),
                           styles: {
-                              opacity: '0'
+                              opacity: '0',
                           },
-                      }
+                      },
+                      {
+                          element: $('#left-col'),
+                          styles: {
+                              position: 'fixed',
+                              top: '88px',
+                          },
+                      },
                   ],
               },
           ];
@@ -406,9 +635,114 @@
           w.setTimeout(function() {
               let st = d.documentElement.scrollTop || d.body.scrollTop;
               if (st < 100) {
-                  $(w).scrollTo(headerAnimationEnd, 1000);
+                  $(w).scrollTo(headerAnimationEnd, 500);
               }
-          }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 5000);
+          }, w.location.href.match(/^https?:\/\/[a-z-.]+\/(home?)$/) ? 10000 : 2000);
+
+          $('#mobile-nav').sidenav({
+              onOpenStart: function() {
+                  $('.sidenav-toggle .menu-icon').hide();
+                  $('.sidenav-toggle .close-icon').css('display', 'block');
+              },
+              onCloseStart: function() {
+                  $('.sidenav-toggle .menu-icon').css('display', 'block');
+                  $('.sidenav-toggle .close-icon').hide();
+              },
+          });
+          $('.sidenav-toggle').click(function(e) {
+              let st = d.documentElement.scrollTop || d.body.scrollTop;
+              let sidenav = M.Sidenav.getInstance($('#mobile-nav'));
+
+              if (!sidenav.isOpen && st < headerAnimationEnd) {
+                  $(w).scrollTo(headerAnimationEnd + 8, 500, function() {
+                      sidenav.open();
+                  });
+                  // w.setTimeout(, 1000);
+              } else if (sidenav.isOpen) {
+                  sidenav.close();
+              } else {
+                  sidenav.open();
+              }
+
+              return false;
+          });
+
+          $('.card-content.search input').focus(function() {
+              $('.card.search').addClass('active');
+          }).blur(function() {
+              if ($(this).val() === '') {
+                  $('.card.search').removeClass('active');
+              }
+          }).on('change', function(e) {
+              $('.card-content.search input').not(e.target).val($(e.target).val());
+          });
+
+
+          let $leftSearch = $('#left-col .card.search');
+          let $rightSearch = $('#right-col .card.search');
+          let openTimer = u;
+          let search = function search(term) {
+              w.setTimeout(function() {
+                  $rightSearch.promise().done(function() {
+                      $rightSearch.find('.card-tabs').show().find('.tabs').tabs();
+                      $rightSearch.find('.card-content').show();
+                  });
+              }, 200 + Math.random() * 700);
+          };
+
+          $leftSearch.find('input').keydown(function() {
+              let $this = $(this);
+              if (openTimer) {
+                  w.clearTimeout(openTimer);
+              }
+
+              openTimer = w.setTimeout(function() {
+                  if ($this.val() === '') {
+                      return;
+                  }
+
+                  $(w).scrollTo(headerAnimationEnd, 500);
+
+                  // morph left to right search
+                  $rightSearch.show();
+                  $leftSearch.animate({
+                      width: $rightSearch.width(),
+                      left: $rightSearch.offset().left - $leftSearch.offset().left,
+                      top: -8,
+                  }, 500, function() {
+                      $leftSearch.css({
+                          opacity: 0,
+                          left: '',
+                          top: '',
+                          width: '',
+                      });
+                      $rightSearch.find('input').val($this.val()).focus();
+                  });
+                  $rightSearch.hide();
+                  $rightSearch.show(500);
+
+                  search($this.val());
+                  openTimer = u;
+              }, 200);
+          });
+
+          $rightSearch.find('input').keydown(function() {
+              let $this = $(this);
+              if (openTimer) {
+                  w.clearTimeout(openTimer);
+              }
+
+              openTimer = w.setTimeout(function() {
+                  if ($this.val() === '') {
+                      return;
+                  }
+
+                  $(w).scrollTo(headerAnimationEnd, 500);
+
+                  search($this.val());
+                  openTimer = u;
+              });
+          });
       });
   }(jQuery, window, document))
 </script>
