@@ -20,7 +20,7 @@
       .sidenav-overlay { top: 64px; }
       .sidenav { top: 64px; width: 248px; }
       .tabs .tab a:focus, .tabs .tab a:focus.active { background-color: rgba(0, 137, 123, 0.1); }
-      .tabs .indicator { background-color: rgba(0, 137, 123, 1); }
+      .tabs .indicator { background-color: #00897b; }
       label.label-icon.right { left: auto; right: 0; }
 
       .container { max-width: 992px; width: 100%; }
@@ -38,15 +38,16 @@
       .card-content.search { padding: 5px 32px; }
       .card-content.search .input-field { margin: 0; }
       .card-content.search .input-field input { padding-right: 28px; box-sizing: border-box; }
-      .card.search-result { padding: 16px; }
-      .card.search-result .row { margin-bottom: 0; }
-      .card.search-result .material-icons { font-size: 48px; color: rgba(0, 137, 123, 1); margin-right: 16px; }
-      .card.search-result h6 { margin-top: 0; }
-      .card.search-result .col.icon { width: calc(48px + 1.5rem); }
-      .card.search-result .col.text { width: calc(100% - 48px - 1.5rem); }
+      #close-search { position: absolute; top: 0; right: 0; color: #777; display: none; }
+      .card.search-result { display: flex; align-items: stretch; }
+      .card.search-result .search-area { flex: 0 0 80px; display: flex; justify-content: center; align-items: center; background: #00897b; }
+      .card.search-result .material-icons { font-size: 24px; color: #fff; }
+      .card.search-result .search-text { flex: 1 1 0; display: block; padding: 8px; overflow: hidden; text-overflow: ellipsis; }
+      .card.search-result .search-text h6 { margin-top: 0; }
+      .card.search-result .search-text a { white-space: nowrap; }
 
       header nav { overflow: hidden; height: 640px; position: relative; }
-      header .logo-wrapper div { position: absolute; background-repeat: no-repeat; background-size: 100%; }
+      header .logo-wrapper div { position: absolute; width: 100%; background-repeat: no-repeat; background-size: 100%; }
       #header-background-icon {
         bottom: 334px; left: calc(50% - 41px); width: 83px; height: 86px;
         background-image: url('../images/icon.svg');
@@ -99,6 +100,7 @@
         .sidenav { top: 56px; }
         nav .icon-text { display: none; }
         header ul { top: calc(100% - 56px); }
+        .card.search-result .search-area { flex-basis: 48px; }
       }
 
     </style>
@@ -178,6 +180,7 @@
             <input name="riki-search" id="search" type="text" placeholder="Search">
             <label class="label-icon right"><i class="material-icons">search</i></label>
           </div>
+          <a id="close-search" href="#"><i class="material-icons">close</i></a>
         </div>
         <div class="card-tabs" style="display: none">
           <ul class="tabs tabs-fixed-width">
@@ -187,84 +190,60 @@
             <li class="tab"><a class="teal-text" href="#search-guide">guide</a></li>
           </ul>
         </div>
-        <div class="card-content grey lighten-5" style="display: none">
+        <div class="card-content search-results grey lighten-5" style="display: none">
           <div id="search-everywhere">
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">library_books</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Documentation - Bootstrap</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/documentation/boostrap">/documentation/bootstrap</a></div>
+              <div class="search-area"><i class="material-icons">library_books</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Documentation - Bootstrap</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/documentation/boostrap">/documentation/bootstrap</a>
               </div>
             </div>
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">toc</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Guide - Bootstrap</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/guide/boostrap">/guide/bootstrap</a></div>
+              <div class="search-area"><i class="material-icons">toc</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Guide - Bootstrap</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/guide/boostrap">/guide/bootstrap</a>
               </div>
             </div>
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">question_answer</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a></div>
+              <div class="search-area"><i class="material-icons">question_answer</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a>
               </div>
             </div>
           </div>
           <div id="search-documentation">
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">library_books</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Documentation - Bootstrap</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/documentation/boostrap">/documentation/bootstrap</a></div>
+              <div class="search-area"><i class="material-icons">library_books</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Documentation - Bootstrap</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/documentation/boostrap">/documentation/bootstrap</a>
               </div>
             </div>
           </div>
           <div id="search-exchange">
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">question_answer</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a></div>
+              <div class="search-area"><i class="material-icons">question_answer</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Exchange - How do I bootstrap my application?</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/exchange/2315/how-do-i-bootstrap-my-application">/exchange/2315/how-do-i-bootstrap-my-application</a>
               </div>
             </div>
           </div>
           <div id="search-guide">
             <div class="card search-result">
-              <div class="row">
-                <div class="col icon"><i class="material-icons">toc</i></div>
-                <div class="col text grey-text text-darken-2">
-                  <h6 class="teal-text">Guide - Bootstrap</h6>
-                  <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12"><a href="/guide/boostrap">/guide/bootstrap</a></div>
+              <div class="search-area"><i class="material-icons">toc</i></div>
+              <div class="search-text grey-text text-darken-2">
+                <h6 class="teal-text">Guide - Bootstrap</h6>
+                <p>... sodales sagittis magna. Sed consequat, leo <b>eget</b> bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero ...</p>
+                <a href="/guide/boostrap">/guide/bootstrap</a>
               </div>
             </div>
           </div>
@@ -680,14 +659,18 @@
 
           let $leftSearch = $('#left-col .card.search');
           let $rightSearch = $('#right-col .card.search');
+          let $close = $('#close-search');
+          let $searchTabs = $rightSearch.find('.card-tabs');
+          let $searchResults = $rightSearch.find('.search-results');
           let openTimer = u;
           let search = function search(term) {
               w.setTimeout(function() {
                   $rightSearch.promise().done(function() {
-                      $rightSearch.find('.card-tabs').show().find('.tabs').tabs();
-                      $rightSearch.find('.card-content').show();
+                      $searchTabs.show().find('.tabs').tabs();
+                      $searchResults.show();
                   });
               }, 200 + Math.random() * 700);
+              $close.show();
           };
 
           $leftSearch.find('input').keydown(function() {
@@ -723,7 +706,7 @@
 
                   search($this.val());
                   openTimer = u;
-              }, 200);
+              }, 300);
           });
 
           $rightSearch.find('input').keydown(function() {
@@ -741,7 +724,16 @@
 
                   search($this.val());
                   openTimer = u;
-              });
+              }, 300);
+          });
+
+          $close.click(function() {
+              $leftSearch.attr('style', '').find('input').val('');
+              $rightSearch.attr('style', 'display: none;').find('input').val('').blur();
+              $close.hide();
+              $searchTabs.hide();
+              $searchResults.hide();
+              return false;
           });
       });
   }(jQuery, window, document))
