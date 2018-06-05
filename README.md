@@ -1,4 +1,4 @@
-# Conceptual ideas for Ríki community
+# Conceptual ideas for ríki community
 
 ## Project
 
@@ -98,6 +98,8 @@ animation is triggered by scrolling.
 The framework itself has no fixed directory structure instead it provides only some classes that you otherwise have to
 rewrite for every project. These classes should not contain high sophisticated logic to make them configurable but have
 to be extendable and therefore reusable.
+
+A detailed [concept of the framework](framework) is available. 
 
 ## Technical concept of the community page
 
