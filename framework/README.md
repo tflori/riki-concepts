@@ -150,7 +150,7 @@ use GetOpt\Arguments;
 require __DIR__ . '../vendor/autoload.php';
 
 # create the app
-$app = new App\Main;
+$app = new Main;
 
 # bootstrap the app
 $app->bootstrap();
