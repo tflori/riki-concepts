@@ -4,8 +4,10 @@
 
 Riki is a project to bring developers the idea near to design their own project structure and get a clear understanding
 of what is reusable code and what not. The framework itself contains only a few classes and has no tight coupling to
-other libraries that are recommended. There will be a skeleton project without any examples but in the guide it is also
-recommended to start from an empty project.
+other libraries that are recommended.
+
+There will be a skeleton project without any examples but in the guide it is also recommended to start from an empty
+project. The skeleton project has some additional dependencies that are only recommended. 
 
 ## Goals of the community website
 
@@ -100,6 +102,14 @@ rewrite for every project. These classes should not contain high sophisticated l
 to be extendable and therefore reusable.
 
 A detailed [concept of the framework](framework) is available. 
+
+## Skeleton
+
+There will be a skeleton that can be used as a project template for generating an application using the framework. This
+skeleton should have the ability to be as minimal as possible while also options exist for fully implemented libraries
+for http routing, io handling on console or scheduling asynchronous jobs.
+
+A detailed [concept of the skeleton](skeleton) is available. 
 
 ## Technical concept of the community page
 
