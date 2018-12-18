@@ -1,8 +1,8 @@
 # Concept for ríki framework
 
 The framework itself has no fixed directory structure instead it provides only some classes that you otherwise have to
-rewrite for every project. These classes should not contain high sophisticated logic to make them configurable but have
-to be extendable and therefore reusable.
+rewrite for every project. These classes should not contain high sophisticated logic to make them configurable. Instead
+all classes are abstract and need to be extended.
 
 The framework is only for the application - not for the business models.
 
@@ -13,12 +13,13 @@ completion.
 
 For complex configuration you can use arrays or objects.
 
-> Keep in mind that array declarations inside methods (also the constructor) are not recognized by the most IDEs.
+> Keep in mind that array declarations inside methods (also the constructor) are not recognized by the
+most IDEs.
 
 ```php
 <?php
 namespace App {
-    class Config
+    class Config extends \Riki\Config
     {
         public $title = 'Ríki Community';
 
@@ -30,14 +31,20 @@ namespace App {
             'port' => 3769,
             'db' => 0,
         ];
+        
+        public function __construct(\Riki\Environment $environment)
+        {
+            parent::__construct($environment);
+            $this->database = new Config\Database;
+        }
     }
 }
 
 namespace App\Config {
     class Database {
-        public $dsn;
-        public $username;
-        public $Password;
+        public $dsn = 'mysql:host=mysql;name=my-app';
+        public $username = 'user';
+        public $Password = 'password';
     }
 }
 ```
@@ -45,15 +52,15 @@ namespace App\Config {
 ## Environment
 
 To configure the environment (development, testing, production etc.) you use this class. The configuration get's an
-instance of this class. It defines the paths of your environment and what is being used (e. g. canCacheConfig or
+instance of this class. It defines the capabilities and restrictions of the environment (e. g. canCacheConfig or
 usesDotEnv).
 
-The environment to use is determined by the environment variable `APP_ENV` and the namespace. You can pass the namespace
-to the init method for a small performance improvement. When no namespace is passed the namespace of the subclass is
-used.
+The environment to use is determined by the environment variable `APP_ENV` and the namespace. You can pass the
+namespace to the init method for a small performance improvement. When no namespace is passed the namespace of the
+subclass is used.
 
-> **Note:** the `APP_ENV` environment variable is not read from the dotEnv (because the environment defines if this file
-should be used at all) and the default is `development`.
+> **Note:** the `APP_ENV` environment variable is not read from the dotEnv (because the environment
+defines if this file should be used at all) and the default is `development`.
 
 You have to define a basic environment class that defines all methods that are changed from your environment.
 
@@ -91,70 +98,78 @@ namespace App {
 ```
 
 
-## Class Main
+## Class Application
 
-This class will hold the main logic for the application. Because it is so difficult what the implementations are doing
-we can not provide any logic here. For example a queue worker might start listening on a queue, a website or api might
-want to deliver http responses to http requests, a command line interface starts commands based on parameters and so
-on.
+The Application extends the dependency injection container from tflori/dependency-injector. Therefore it is a PSR-11
+compatible dependency injector. For convenience the application stores a static variable to the application instance
+that allows you to use the static magic `__callStatic` to get your dependencies.
 
-### Bootstrap
+> There are a lot of advices not to pass around the container or access the container from within your
+classes. I can't confirm that any of this is a real problem - neither for testing nor for the 
+maintainability of your application. 
 
-The bootstrap method get's called first and prepares the application for `run`. You can also define specific bootstrap
-methods that are preparing different setups. For example a method `Main::bootstrap()` and a method
-`Main::bootstrapAdmin()` that is getting executed from `admin.php`.
+The application also initializes the dependencies, detects the environment based on the environment variable `APP_ENV`
+and loads the configuration when it gets created (in the constructor). The **main** responsibility for this class
+is to execute the bootstrapper of a kernel and run it afterwards.
 
-You could also load the constructor from the constructor but keep in mind that this stuff is then executed regardless of
-the target (cli, web, api etc.).
+### Example
 
-### Run
-
-The run method executes the application. Also this method could be split up for different targets. `Main::runCli()`
-could start an interactive console application for example. Or `Main::runWebsocket()` starts a websocket service.
-
-### Example Usage
-
-For a http requests the intialization file (e. g. index.php) could look like this:
+A `{main}` script could look like this:
 
 ```php
 <?php
 
-use App\Main;
-use App\Http\Request;
+require __DIR__ . '/../vendor/autoload.php';
 
-// load the composer autoloader
-require __DIR__ . '../vendor/autoload.php';
+$app = new \App\Application(realPath(__DIR__ . '/..'));
+$kernel = new \App\Http\HttpKernel();
+$response = $app->run($kernel);
 
-// create the app
-$app = new Main;
-
-// bootstrap the app
-$app->boostrap();
-
-// run the app
-$response = $app->run(Request::fromSuperGlobals());
-
-// send the response
-$response->send();
+// .. $response->send() or what ever your kernel returns
 ```
 
-A command line script could look like this:
+## Kernel
 
+While the application describes the basics of your application the kernel describes the abstract functionality of 
+executing things. For example a `HttpKernel` routes the incoming request to the appropriate controller and might
+execute some middleware between and a `QueueKernel` checks in an endless loop if there is a new job to execute and
+executes it.
+
+### Bootstrapper
+
+A kernel might define bootstrapper that have to be executed before the run method gets executed. Other than the run
+method the bootstrapper gets the application instance. The reason for this is you could want to load something without
+executing the kernel but the logic should stay in the kernel.
+  
 ```php
 <?php
 
-use App\Main;
-use GetOpt\Arguments;
-
-# load the composer autoloader
-require __DIR__ . '../vendor/autoload.php';
-
-# create the app
-$app = new Main;
-
-# bootstrap the app
-$app->bootstrap();
-
-# run the app (interactive)
-$app->runCli(new Arguments(array_slice($_SERVER['argv'])));
+class HttpKernel extends \Riki\Kernel
+{
+    protected $routes;
+    
+    public function __construct()
+    {
+        $this->addBootstrappers(
+            [$this, 'loadRoutes']
+        );
+    }
+    
+    public function loadRoutes(\Riki\Application $app)
+    {
+        // store an array of routes in $this->routes or whatever
+    }
+    
+    public function getRoutes(string $filter = null)
+    {
+        return array_filter($this->routes, function ($route) use ($filter) {
+            return $route->matches($filter);
+        });
+    }
+    
+    public function run(?HttpRequest $httpRequest = null)
+    {
+        // find the controller for the request and execute it
+    }
+}
 ```
